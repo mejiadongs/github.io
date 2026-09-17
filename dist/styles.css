@@ -130,10 +130,11 @@ section[id], .toolkit { padding-top: 48px; }
 .pub-year { color: var(--muted); font: 700 11px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; }
 .pub-badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 5px; }
 .pub-badges span { color: var(--accent); font: 700 10.5px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .05em; }
-.pub-badges .contribution, .pub-badges .impact { display: inline-flex; align-items: center; padding: 2px 7px; border: 1px solid transparent; border-radius: 5px; font-family: var(--font-body); letter-spacing: 0; }
+.pub-badges .contribution, .pub-badges .impact, .pub-badges .theory { display: inline-flex; align-items: center; padding: 2px 7px; border: 1px solid transparent; border-radius: 5px; font-family: var(--font-body); letter-spacing: 0; }
 .pub-badges .contribution-sole { color: #8b3b22; background: #fbefe8; border-color: #efd6c9; }
 .pub-badges .contribution-cofirst { color: #244f9c; background: #edf3fb; border-color: #d6e1f1; }
 .pub-badges .impact { color: #806018; background: #fbf5e6; border-color: #ecdfbd; }
+.pub-badges .theory { color: #267257; background: #edf7f1; border-color: #d1e8da; }
 .pub-body h3 { margin: 0; max-width: 850px; font-size: 14px; line-height: 1.48; }
 .pub-body p { margin: 4px 0 0; color: var(--muted); font-size: 11.5px; }
 .publication-item > a { display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid var(--line); background: white; border-radius: 50%; font-size: 12px; transition: .18s ease; }
