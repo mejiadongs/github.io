@@ -1,0 +1,75 @@
+const languageButton = document.querySelector('.language-toggle');
+const menuButton = document.querySelector('.menu-toggle');
+const mobileNav = document.querySelector('.mobile-nav');
+const copyButton = document.querySelector('.copy-email');
+const translatedNodes = document.querySelectorAll('[data-zh][data-en]');
+
+let currentLanguage = localStorage.getItem('site-language') || 'zh';
+
+function setLanguage(language) {
+  currentLanguage = language;
+  document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
+  translatedNodes.forEach((node) => {
+    node.textContent = node.dataset[language];
+  });
+  languageButton.textContent = language === 'zh' ? 'EN' : '涓枃';
+  languageButton.setAttribute('aria-label', language === 'zh' ? 'Switch to English' : '鍒囨崲鍒颁腑鏂?);
+  languageButton.setAttribute('aria-pressed', String(language === 'en'));
+  localStorage.setItem('site-language', language);
+}
+
+setLanguage(currentLanguage);
+languageButton.addEventListener('click', () => setLanguage(currentLanguage === 'zh' ? 'en' : 'zh'));
+
+menuButton.addEventListener('click', () => {
+  const isOpen = mobileNav.classList.toggle('open');
+  menuButton.setAttribute('aria-expanded', String(isOpen));
+  menuButton.setAttribute('aria-label', isOpen ? '鍏抽棴瀵艰埅' : '鎵撳紑瀵艰埅');
+});
+
+mobileNav.querySelectorAll('a').forEach((link) => {
+  link.addEventListener('click', () => {
+    mobileNav.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach((element, index) => {
+  element.style.transitionDelay = `${Math.min(index % 4, 3) * 70}ms`;
+  observer.observe(element);
+});
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    document.querySelectorAll('.desktop-nav a').forEach((link) => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+    });
+  });
+}, { rootMargin: '-25% 0px -65% 0px' });
+
+document.querySelectorAll('main section[id]').forEach((section) => sectionObserver.observe(section));
+
+copyButton.addEventListener('click', async () => {
+  const email = 'mejiadongs@korea.ac.kr';
+  try {
+    await navigator.clipboard.writeText(email);
+    copyButton.textContent = currentLanguage === 'zh' ? '宸插鍒? : 'Copied';
+    window.setTimeout(() => {
+      copyButton.textContent = currentLanguage === 'zh' ? copyButton.dataset.zh : copyButton.dataset.en;
+    }, 1600);
+  } catch {
+    window.location.href = `mailto:${email}`;
+  }
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
