@@ -12,8 +12,8 @@ function setLanguage(language) {
   translatedNodes.forEach((node) => {
     node.textContent = node.dataset[language];
   });
-  languageButton.textContent = language === 'zh' ? 'EN' : '涓枃';
-  languageButton.setAttribute('aria-label', language === 'zh' ? 'Switch to English' : '鍒囨崲鍒颁腑鏂?);
+  languageButton.textContent = language === 'zh' ? 'EN' : '中文';
+  languageButton.setAttribute('aria-label', language === 'zh' ? 'Switch to English' : '切换到中文');
   languageButton.setAttribute('aria-pressed', String(language === 'en'));
   localStorage.setItem('site-language', language);
 }
@@ -24,7 +24,7 @@ languageButton.addEventListener('click', () => setLanguage(currentLanguage === '
 menuButton.addEventListener('click', () => {
   const isOpen = mobileNav.classList.toggle('open');
   menuButton.setAttribute('aria-expanded', String(isOpen));
-  menuButton.setAttribute('aria-label', isOpen ? '鍏抽棴瀵艰埅' : '鎵撳紑瀵艰埅');
+  menuButton.setAttribute('aria-label', isOpen ? '关闭导航' : '打开导航');
 });
 
 mobileNav.querySelectorAll('a').forEach((link) => {
@@ -63,7 +63,7 @@ copyButton.addEventListener('click', async () => {
   const email = 'mejiadongs@korea.ac.kr';
   try {
     await navigator.clipboard.writeText(email);
-    copyButton.textContent = currentLanguage === 'zh' ? '宸插鍒? : 'Copied';
+    copyButton.textContent = currentLanguage === 'zh' ? '已复制' : 'Copied';
     window.setTimeout(() => {
       copyButton.textContent = currentLanguage === 'zh' ? copyButton.dataset.zh : copyButton.dataset.en;
     }, 1600);

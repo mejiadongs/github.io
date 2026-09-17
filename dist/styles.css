@@ -146,7 +146,7 @@ section[id], .toolkit { padding-top: 112px; }
 
 .contact { padding-top: 112px; padding-bottom: 80px; }
 .contact-inner { position: relative; overflow: hidden; padding: clamp(38px, 7vw, 86px); color: white; background: var(--blue); border-radius: 30px; }
-.contact-inner::after { content: "Li鈦?; position: absolute; right: -2%; bottom: -24%; color: rgba(255,255,255,.055); font: 700 clamp(9rem, 22vw, 20rem)/1 "Space Grotesk", sans-serif; pointer-events: none; }
+.contact-inner::after { content: "Li⁺"; position: absolute; right: -2%; bottom: -24%; color: rgba(255,255,255,.055); font: 700 clamp(9rem, 22vw, 20rem)/1 "Space Grotesk", sans-serif; pointer-events: none; }
 .contact-inner h2 { position: relative; z-index: 1; max-width: 800px; margin: 0; font: 700 clamp(2.2rem, 5vw, 4.6rem)/1.05 "Space Grotesk", "Noto Sans SC", sans-serif; letter-spacing: -.05em; }
 .contact-inner > p:not(.section-index):not(.address) { position: relative; z-index: 1; max-width: 700px; margin: 24px 0; color: #d9e9ef; }
 .contact-actions { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 34px; }
