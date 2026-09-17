@@ -4,7 +4,13 @@ const mobileNav = document.querySelector('.mobile-nav');
 const copyButton = document.querySelector('.copy-email');
 const translatedNodes = document.querySelectorAll('[data-zh][data-en]');
 
-let currentLanguage = localStorage.getItem('site-language') || 'zh';
+let currentLanguage = 'zh';
+
+try {
+  currentLanguage = localStorage.getItem('site-language') || 'zh';
+} catch {
+  currentLanguage = 'zh';
+}
 
 function setLanguage(language) {
   currentLanguage = language;
@@ -15,7 +21,11 @@ function setLanguage(language) {
   languageButton.textContent = language === 'zh' ? 'EN' : '中文';
   languageButton.setAttribute('aria-label', language === 'zh' ? 'Switch to English' : '切换到中文');
   languageButton.setAttribute('aria-pressed', String(language === 'en'));
-  localStorage.setItem('site-language', language);
+  try {
+    localStorage.setItem('site-language', language);
+  } catch {
+    // Language switching still works when browser storage is unavailable.
+  }
 }
 
 setLanguage(currentLanguage);
